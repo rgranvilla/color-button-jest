@@ -23,7 +23,7 @@ function App() {
         style={{
           padding: '0.5rem',
           fontSize: '1rem',
-          backgroundColor: buttonColor,
+          backgroundColor: disabled ? 'gray' : buttonColor,
           color: '#ddd',
         }}
         onClick={() => setButtonColor(newButtonColor)}
