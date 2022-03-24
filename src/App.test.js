@@ -13,3 +13,31 @@ test('button has correct initial color and change color to blue when clicked, an
   expect(colorButton).toHaveStyle({ backgroundColor: 'blue' });
   expect(colorButton.textContent).toBe('Change to red');
 });
+
+test('intial conditions', () => {
+  render(<App />);
+  //check that the button starts out enabled
+  const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+  expect(colorButton).toBeEnabled();
+
+  //check that the checkbox starts out unchecked
+  const checkbox = screen.getByRole('checkbox');
+  expect(checkbox).not.toBeChecked();
+});
+
+test('checkbox has checked when first time click', () => {
+  render(<App />);
+
+  const checkbox = screen.getByRole('checkbox');
+  fireEvent.click(checkbox);
+  expect(checkbox).toBeChecked();
+});
+
+test('checkbox hasn`t checked when click two times', () => {
+  render(<App />);
+
+  const checkbox = screen.getByRole('checkbox');
+  fireEvent.click(checkbox);
+  fireEvent.click(checkbox);
+  expect(checkbox).not.toBeChecked();
+});

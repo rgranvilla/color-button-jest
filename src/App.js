@@ -3,11 +3,15 @@ import './App.css';
 
 function App() {
   const [buttonColor, setButtonColor] = useState('red');
+  const [isChecked, setIsChecked] = useState(false);
+
   const newButtonColor = buttonColor === 'red' ? 'blue' : 'red';
   return (
     <div
       style={{
         display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
         justifyContent: 'center',
         alignItems: 'center',
         width: '100vw',
@@ -26,6 +30,11 @@ function App() {
       >
         Change to {newButtonColor}
       </button>
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onClick={() => setIsChecked(!isChecked)}
+      />
     </div>
   );
 }
