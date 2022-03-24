@@ -28,7 +28,7 @@ test('intial conditions', () => {
 test('checkbox has checked when first time click', () => {
   render(<App />);
 
-  const checkbox = screen.getByRole('checkbox');
+  const checkbox = screen.getByRole('checkbox', { name: 'Disable button' });
   fireEvent.click(checkbox);
   expect(checkbox).toBeChecked();
 });
@@ -36,8 +36,18 @@ test('checkbox has checked when first time click', () => {
 test('checkbox hasn`t checked when click two times', () => {
   render(<App />);
 
-  const checkbox = screen.getByRole('checkbox');
+  const checkbox = screen.getByRole('checkbox', { name: 'Disable button' });
   fireEvent.click(checkbox);
   fireEvent.click(checkbox);
   expect(checkbox).not.toBeChecked();
+});
+
+test('has disabled button when checkbox is checked', () => {
+  render(<App />);
+  const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+  const checkbox = screen.getByRole('checkbox', { name: 'Disable button' });
+
+  fireEvent.click(checkbox);
+  expect(checkbox).toBeChecked();
+  expect(colorButton).toBeDisabled();
 });
